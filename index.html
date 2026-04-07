@@ -9,8 +9,8 @@
         :root {
             --mist-cyan: #00fff2;
             --mist-glow: rgba(0, 255, 242, 0.4);
-            --glass: rgba(255, 255, 255, 0.05);
-            --card-bg: rgba(20, 20, 20, 0.6);
+            --glass: rgba(255, 255, 255, 0.03);
+            --card-bg: rgba(15, 15, 15, 0.85);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
@@ -23,15 +23,16 @@
             scroll-behavior: smooth;
         }
 
-        /* The Dimmer: Adjust 0.6 to 0.8 if you want it even darker */
+        /* HEAVY DIMMER for the background */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.65); 
+            background: rgba(0, 0, 0, 0.75); 
             z-index: -1;
         }
 
+        /* Navigation */
         nav {
             position: fixed;
             top: 0; width: 100%;
@@ -39,67 +40,75 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(20px);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(25px);
             z-index: 1000;
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         .logo { font-weight: 900; font-size: 1.4rem; letter-spacing: 3px; color: var(--mist-cyan); text-transform: uppercase; }
-        .nav-links a { color: white; text-decoration: none; margin-left: 1.5rem; font-size: 0.8rem; font-weight: 600; opacity: 0.6; transition: 0.3s; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 1.5rem; font-size: 0.8rem; font-weight: 600; opacity: 0.6; transition: 0.3s; text-transform: uppercase; }
         .nav-links a:hover { opacity: 1; color: var(--mist-cyan); }
 
-        section { min-height: 100vh; padding: 120px 10% 80px; display: flex; flex-direction: column; justify-content: center; }
+        section { min-height: 100vh; padding: 140px 10% 80px; display: flex; flex-direction: column; justify-content: center; }
+        h2 { font-size: 3rem; font-weight: 900; margin-bottom: 2rem; text-align: center; letter-spacing: 2px; }
 
-        /* Hero Section */
+        /* Hero */
         #home { text-align: center; }
-        .hero-title { font-size: 7rem; font-weight: 900; letter-spacing: -4px; filter: drop-shadow(0 0 20px var(--mist-glow)); }
-        .hero-tag { font-size: 1.2rem; opacity: 0.6; letter-spacing: 6px; margin-bottom: 3rem; }
+        .hero-title { font-size: 8rem; font-weight: 900; letter-spacing: -5px; filter: drop-shadow(0 0 25px var(--mist-glow)); }
+        .hero-tag { font-size: 1.4rem; opacity: 0.5; letter-spacing: 8px; margin-bottom: 3.5rem; }
 
-        /* IMAGE-MATCHED DOWNLOAD BOX */
-        .download-container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: var(--card-bg);
+        /* Grid Layouts */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .glass-card {
+            background: var(--glass);
             backdrop-filter: blur(30px);
-            border-radius: 30px;
-            padding: 50px 40px;
-            text-align: center;
             border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border-radius: 25px;
+            padding: 2.5rem;
+            transition: 0.4s;
         }
+        .glass-card:hover { border-color: var(--mist-cyan); transform: translateY(-5px); }
 
-        .download-container h2 { font-size: 3rem; font-weight: 900; margin-bottom: 15px; letter-spacing: 1px; }
-        .download-container p { font-size: 1.1rem; opacity: 0.7; margin-bottom: 30px; }
-
-        .sha-box {
-            background: rgba(15, 15, 15, 0.8);
-            border-left: 5px solid var(--mist-cyan);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 40px;
-            position: relative;
-        }
-        .sha-label { color: var(--mist-cyan); font-size: 0.8rem; font-weight: 700; margin-bottom: 8px; display: block; }
-        .sha-value { font-family: 'Courier New', monospace; font-size: 0.9rem; word-break: break-all; opacity: 0.9; }
-
-        .dl-btn {
+        /* Buttons */
+        .btn-group { display: flex; gap: 20px; justify-content: center; }
+        .btn {
             display: inline-block;
-            background: var(--mist-cyan);
-            color: #000;
-            padding: 1.2rem 4rem;
+            padding: 1.2rem 3.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 900;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             transition: 0.3s;
             text-transform: uppercase;
-            box-shadow: 0 0 25px var(--mist-glow);
         }
-        .dl-btn:hover { transform: scale(1.05); box-shadow: 0 0 45px var(--mist-cyan); }
+        .btn-primary { background: var(--mist-cyan); color: #000; box-shadow: 0 0 30px var(--mist-glow); }
+        .btn-secondary { background: transparent; border: 2px solid white; color: white; }
+        .btn:hover { transform: scale(1.05); }
 
-        .file-info { margin-top: 30px; font-size: 0.85rem; opacity: 0.4; }
+        /* Download Container (Matching your Image) */
+        .download-box {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 30px;
+            padding: 60px 40px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .sha-box {
+            background: rgba(10, 10, 10, 0.9);
+            border-left: 5px solid var(--mist-cyan);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .sha-label { color: var(--mist-cyan); font-size: 0.75rem; font-weight: 800; display: block; margin-bottom: 8px; }
+        .sha-value { font-family: 'Courier New', monospace; font-size: 0.9rem; opacity: 0.9; word-break: break-all; }
 
-        footer { padding: 4rem; text-align: center; opacity: 0.4; font-size: 0.8rem; }
+        footer { padding: 4rem; text-align: center; opacity: 0.3; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.1); }
+
+        @media (max-width: 768px) { .hero-title { font-size: 4rem; } .btn-group { flex-direction: column; } }
     </style>
 </head>
 <body>
@@ -108,6 +117,8 @@
         <div class="logo">Mist OS</div>
         <div class="nav-links">
             <a href="#home">Home</a>
+            <a href="#explore">Explore</a>
+            <a href="#specs">Specs</a>
             <a href="#download">Download</a>
         </div>
     </nav>
@@ -115,33 +126,70 @@
     <section id="home">
         <h1 class="hero-title">MIST OS</h1>
         <p class="hero-tag">ALPHA 26.04.05</p>
-        <div>
-            <a href="#download" class="dl-btn" style="background:transparent; color:white; border:2px solid white; box-shadow:none;">Explore Build</a>
+        <div class="btn-group">
+            <a href="#explore" class="btn btn-secondary">Explore Build</a>
+            <a href="#download" class="btn btn-primary">Get ISO</a>
+        </div>
+    </section>
+
+    <section id="explore">
+        <h2>THE EXPERIENCE</h2>
+        <div class="grid">
+            <div class="glass-card">
+                <h3 style="color:var(--mist-cyan)">Ethereal UI</h3>
+                <p style="margin-top:15px; opacity:0.7;">Deeply customized desktop environment focused on glassmorphism and fluid motion.</p>
+            </div>
+            <div class="glass-card">
+                <h3 style="color:var(--mist-cyan)">Optimized Kernel</h3>
+                <p style="margin-top:15px; opacity:0.7;">Custom-tuned for low-latency gaming and high-end workstation performance.</p>
+            </div>
+            <div class="glass-card">
+                <h3 style="color:var(--mist-cyan)">No Bloat</h3>
+                <p style="margin-top:15px; opacity:0.7;">Zero telemetry. Zero tracking. Just pure performance and elite privacy.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="specs">
+        <h2>SYSTEM ARCHITECTURE</h2>
+        <div class="grid">
+            <div class="glass-card">
+                <h4>BASE ENGINE</h4>
+                <p style="opacity:0.6; font-size: 0.9rem;">ArchDDE Core v2.4</p>
+            </div>
+            <div class="glass-card">
+                <h4>FILE SYSTEM</h4>
+                <p style="opacity:0.6; font-size: 0.9rem;">BTRFS / EXT4 Optimized</p>
+            </div>
+            <div class="glass-card">
+                <h4>COMPATIBILITY</h4>
+                <p style="opacity:0.6; font-size: 0.9rem;">X86_64 / UEFI SecureBoot</p>
+            </div>
         </div>
     </section>
 
     <section id="download">
-        <div class="download-container">
-            <h2>READY TO INSTALL?</h2>
-            <p>Download the latest Alpha build below. This is an experimental release.</p>
+        <div class="download-box">
+            <h2 style="text-align:center; font-size: 3.5rem;">READY TO INSTALL?</h2>
+            <p style="opacity:0.7;">Download the latest Alpha build below. This is an experimental release.</p>
             
             <div class="sha-box">
                 <span class="sha-label">SHA-256:</span>
-                <span class="sha-value">f1e2d3c4b5a69788d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f90a1b2c</span>
+                <span class="sha-value">35e1538468327c2d7eebffaa2146df6a</span>
             </div>
 
-            <a href="https://drive.google.com/file/d/1p0YVIureMBWWFAIRQm9Gp8MigwK0tEbl/view?usp=drive_link" target="_blank" class="dl-btn">
+            <a href="https://drive.google.com/file/d/1p0YVIureMBWWFAIRQm9Gp8MigwK0tEbl/view?usp=drive_link" target="_blank" class="btn btn-primary">
                 DOWNLOAD FROM GOOGLE DRIVE
             </a>
             
-            <div class="file-info">
+            <div style="margin-top:30px; font-size:0.8rem; opacity:0.4;">
                 File Size: 7.06 GB | Build: 26.04.05 | Format: .ISO
             </div>
         </div>
     </section>
 
     <footer>
-        &copy; 2026 Mist OS Project. All rights reserved.
+        &copy; 2026 Mist OS Project. Distributed for computer experts and creators.
     </footer>
 
 </body>

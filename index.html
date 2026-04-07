@@ -23,16 +23,15 @@
             scroll-behavior: smooth;
         }
 
-        /* HEAVY DIMMER for the background */
+        /* HEAVY DIMMER */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.75); 
+            background: rgba(0, 0, 0, 0.8); 
             z-index: -1;
         }
 
-        /* Navigation */
         nav {
             position: fixed;
             top: 0; width: 100%;
@@ -52,12 +51,10 @@
         section { min-height: 100vh; padding: 140px 10% 80px; display: flex; flex-direction: column; justify-content: center; }
         h2 { font-size: 3rem; font-weight: 900; margin-bottom: 2rem; text-align: center; letter-spacing: 2px; }
 
-        /* Hero */
         #home { text-align: center; }
         .hero-title { font-size: 8rem; font-weight: 900; letter-spacing: -5px; filter: drop-shadow(0 0 25px var(--mist-glow)); }
         .hero-tag { font-size: 1.4rem; opacity: 0.5; letter-spacing: 8px; margin-bottom: 3.5rem; }
 
-        /* Grid Layouts */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
         .glass-card {
             background: var(--glass);
@@ -69,7 +66,6 @@
         }
         .glass-card:hover { border-color: var(--mist-cyan); transform: translateY(-5px); }
 
-        /* Buttons */
         .btn-group { display: flex; gap: 20px; justify-content: center; }
         .btn {
             display: inline-block;
@@ -85,7 +81,6 @@
         .btn-secondary { background: transparent; border: 2px solid white; color: white; }
         .btn:hover { transform: scale(1.05); }
 
-        /* Download Container (Matching your Image) */
         .download-box {
             max-width: 900px;
             margin: 0 auto;
@@ -107,8 +102,6 @@
         .sha-value { font-family: 'Courier New', monospace; font-size: 0.9rem; opacity: 0.9; word-break: break-all; }
 
         footer { padding: 4rem; text-align: center; opacity: 0.3; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.1); }
-
-        @media (max-width: 768px) { .hero-title { font-size: 4rem; } .btn-group { flex-direction: column; } }
     </style>
 </head>
 <body>
@@ -141,7 +134,7 @@
             </div>
             <div class="glass-card">
                 <h3 style="color:var(--mist-cyan)">Optimized Kernel</h3>
-                <p style="margin-top:15px; opacity:0.7;">Custom-tuned for low-latency gaming and high-end workstation performance.</p>
+                <p style="margin-top:15px; opacity:0.7;">Custom-tuned for low-latency performance and high-end workstation tasks.</p>
             </div>
             <div class="glass-card">
                 <h3 style="color:var(--mist-cyan)">No Bloat</h3>
@@ -155,7 +148,7 @@
         <div class="grid">
             <div class="glass-card">
                 <h4>BASE ENGINE</h4>
-                <p style="opacity:0.6; font-size: 0.9rem;">ArchDDE Core v2.4</p>
+                <p style="opacity:0.6; font-size: 0.9rem;">Mist OS Native Core</p>
             </div>
             <div class="glass-card">
                 <h4>FILE SYSTEM</h4>
@@ -163,7 +156,7 @@
             </div>
             <div class="glass-card">
                 <h4>COMPATIBILITY</h4>
-                <p style="opacity:0.6; font-size: 0.9rem;">X86_64 / UEFI SecureBoot</p>
+                <p style="opacity:0.6; font-size: 0.9rem;">X86_64 / UEFI Support</p>
             </div>
         </div>
     </section>

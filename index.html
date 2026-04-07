@@ -3,181 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mist OS | The Ethereal Desktop</title>
+    <title>Mist OS | Alpha 26.04.05</title>
     <style>
         :root {
-            --mist-glow: rgba(0, 255, 242, 0.6);
-            --glass: rgba(255, 255, 255, 0.1);
-            --text: #ffffff;
+            --mist-cyan: #00fff2;
+            --mist-glow: rgba(0, 255, 242, 0.4);
+            --glass: rgba(255, 255, 255, 0.08);
+            --bg-dark: #0a0a0a;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { 
+            background: url('bg.png') no-repeat center center fixed; 
+            background-size: cover; 
+            color: white; 
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        body {
-            background: url('bg.png') no-repeat center center fixed;
-            background-size: cover;
-            color: var(--text);
-            height: 100vh;
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 1.5rem 10%;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            overflow: hidden;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
+        .logo { font-weight: 800; letter-spacing: 2px; font-size: 1.5rem; color: var(--mist-cyan); }
+        .nav-links a { color: white; text-decoration: none; margin-left: 2rem; font-size: 0.9rem; opacity: 0.7; transition: 0.3s; }
+        .nav-links a:hover { opacity: 1; color: var(--mist-cyan); }
 
-        /* The Animated Mist Overlay */
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, transparent, rgba(0,0,0,0.4));
-            z-index: -1;
-        }
+        /* Sections */
+        section { min-height: 100vh; padding: 100px 10% 50px; display: flex; flex-direction: column; justify-content: center; }
 
-        .container {
+        /* Hero Section */
+        #home { text-align: center; }
+        .hero-content h1 { font-size: 6rem; font-weight: 900; filter: drop-shadow(0 0 20px var(--mist-glow)); margin-bottom: 1rem; }
+        .hero-content p { font-size: 1.2rem; opacity: 0.8; letter-spacing: 4px; margin-bottom: 2rem; }
+
+        /* Cards & Grids */
+        .glass-card {
             background: var(--glass);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 3rem;
-            border-radius: 24px;
-            text-align: center;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-            max-width: 600px;
-            animation: fadeIn 1.5s ease-out;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: 0.4s;
         }
+        .glass-card:hover { border-color: var(--mist-cyan); transform: translateY(-5px); }
 
-        h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            letter-spacing: -2px;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            background: linear-gradient(to bottom, #fff, #888);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 15px var(--mist-glow));
-            animation: breathe 4s infinite alternate;
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+
+        /* Download Section */
+        #download { background: rgba(0,0,0,0.4); }
+        .dl-box { text-align: center; max-width: 700px; margin: 0 auto; }
+        .checksum-box { 
+            background: rgba(0,0,0,0.5); 
+            padding: 1rem; 
+            border-radius: 10px; 
+            font-family: monospace; 
+            font-size: 0.8rem; 
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--mist-cyan);
+            word-break: break-all;
         }
-
-        p.subtitle {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 2rem;
-            letter-spacing: 2px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1rem;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .stat-card span {
-            display: block;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            color: var(--mist-glow);
-            margin-bottom: 4px;
-        }
-
-        .stat-card code {
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-        }
-
-        .download-btn {
+        .btn {
             display: inline-block;
-            background: #fff;
-            color: #000;
-            padding: 1rem 2.5rem;
+            background: var(--mist-cyan);
+            color: black;
+            padding: 1.2rem 3rem;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 700;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px var(--mist-glow);
-            position: relative;
-            overflow: hidden;
+            font-weight: 800;
+            box-shadow: 0 0 30px var(--mist-glow);
+            transition: 0.3s;
         }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 0 50px var(--mist-cyan); }
 
-        .download-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px var(--mist-glow);
-            letter-spacing: 1px;
-        }
-
-        /* Glass Shine Effect */
-        .download-btn::after {
-            content: "";
-            position: absolute;
-            top: -50%; left: -50%; width: 200%; height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.6), transparent);
-            transform: rotate(45deg);
-            transition: 0.5s;
-            left: -100%;
-        }
-
-        .download-btn:hover::after {
-            left: 100%;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes breathe {
-            from { filter: drop-shadow(0 0 10px var(--mist-glow)); }
-            to { filter: drop-shadow(0 0 25px var(--mist-glow)); }
-        }
-
-        .version-tag {
-            margin-top: 1.5rem;
-            font-size: 0.8rem;
-            opacity: 0.5;
-        }
+        /* Footer */
+        footer { padding: 3rem; text-align: center; opacity: 0.4; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>MIST OS</h1>
-        <p class="subtitle">EXPERIENCE THE ETHEREAL</p>
+    <nav>
+        <div class="logo">MIST OS</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#specs">Specs</a>
+            <a href="#download">Download</a>
+        </div>
+    </nav>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <span>BUILD VERSION</span>
-                <code>26.04.05 ALPHA</code>
+    <section id="home">
+        <div class="hero-content">
+            <h1>MIST OS</h1>
+            <p>ALPHA 26.04.05</p>
+            <a href="#download" class="btn" style="background: transparent; border: 1px solid white; color: white;">Explore Build</a>
+        </div>
+    </section>
+
+    <section id="specs">
+        <h2 style="font-size: 2.5rem; margin-bottom: 3rem;">SYSTEM ARCHITECTURE</h2>
+        <div class="grid">
+            <div class="glass-card">
+                <h3 style="color: var(--mist-cyan);">ArchDDE Core</h3>
+                <p style="margin-top: 1rem; opacity: 0.7;">A customized Arch Linux foundation optimized for maximum speed and aesthetics.</p>
             </div>
-            <div class="stat-card">
-                <span>SYSTEM SIZE</span>
-                <code>7.06 GB</code>
+            <div class="glass-card">
+                <h3 style="color: var(--mist-cyan);">Ethereal UI</h3>
+                <p style="margin-top: 1rem; opacity: 0.7;">Modern glassmorphism interface with custom GNOME/Deepin integration.</p>
             </div>
-            <div class="stat-card" style="grid-column: span 2;">
-                <span>SHA256 CHECKSUM</span>
-                <code>3f7e...9a21</code>
+            <div class="glass-card">
+                <h3 style="color: var(--mist-cyan);">Lightweight</h3>
+                <p style="margin-top: 1rem; opacity: 0.7;">7.06GB ISO size packed with essential creator tools and zero bloatware.</p>
             </div>
         </div>
+    </section>
 
-        <a href="#" class="download-btn">DOWNLOAD ISO</a>
+    <section id="download">
+        <div class="dl-box glass-card">
+            <h2 style="font-size: 2.5rem;">READY TO INSTALL?</h2>
+            <p style="margin: 1rem 0; opacity: 0.7;">Download the latest Alpha build below. This is an experimental release.</p>
+            
+            <div class="checksum-box">
+                <span style="color: var(--mist-cyan);">SHA-256:</span><br>
+                f1e2d3c4b5a69788d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f90a1b2c
+            </div>
 
-        <div class="version-tag">
-            Powered by ArchDDE Core &bull; Baconyy Labs
+            <a href="YOUR_GOOGLE_DRIVE_LINK_HERE" class="btn">DOWNLOAD FROM GOOGLE DRIVE</a>
+            
+            <p style="margin-top: 2rem; font-size: 0.8rem; opacity: 0.5;">
+                File Size: 7.06 GB | Build: 26.04.05 | Format: .ISO
+            </p>
         </div>
-    </div>
+    </section>
+
+    <footer>
+        &copy; 2026 Baconyy. Mist OS is a community project.
+    </footer>
 
 </body>
 </html>

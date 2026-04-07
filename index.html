@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mist OS | The Ethereal Desktop</title>
+    <style>
+        :root {
+            --mist-glow: rgba(0, 255, 242, 0.6);
+            --glass: rgba(255, 255, 255, 0.1);
+            --text: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background: url('bg.png') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--text);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* The Animated Mist Overlay */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, transparent, rgba(0,0,0,0.4));
+            z-index: -1;
+        }
+
+        .container {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 3rem;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            max-width: 600px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            background: linear-gradient(to bottom, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px var(--mist-glow));
+            animation: breathe 4s infinite alternate;
+        }
+
+        p.subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-card span {
+            display: block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--mist-glow);
+            margin-bottom: 4px;
+        }
+
+        .stat-card code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: #fff;
+            color: #000;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px var(--mist-glow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px var(--mist-glow);
+            letter-spacing: 1px;
+        }
+
+        /* Glass Shine Effect */
+        .download-btn::after {
+            content: "";
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.6), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+            left: -100%;
+        }
+
+        .download-btn:hover::after {
+            left: 100%;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes breathe {
+            from { filter: drop-shadow(0 0 10px var(--mist-glow)); }
+            to { filter: drop-shadow(0 0 25px var(--mist-glow)); }
+        }
+
+        .version-tag {
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>MIST OS</h1>
+        <p class="subtitle">EXPERIENCE THE ETHEREAL</p>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span>BUILD VERSION</span>
+                <code>26.04.05 ALPHA</code>
+            </div>
+            <div class="stat-card">
+                <span>SYSTEM SIZE</span>
+                <code>7.06 GB</code>
+            </div>
+            <div class="stat-card" style="grid-column: span 2;">
+                <span>SHA256 CHECKSUM</span>
+                <code>3f7e...9a21</code>
+            </div>
+        </div>
+
+        <a href="#" class="download-btn">DOWNLOAD ISO</a>
+
+        <div class="version-tag">
+            Powered by ArchDDE Core &bull; Baconyy Labs
+        </div>
+    </div>
+
+</body>
+</html>

@@ -4,6 +4,196 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mist OS | Alpha 26.04.05</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --mist-cyan: #00fff2;
+            --mist-glow: rgba(0, 255, 242, 0.4);
+            --glass: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        
+        body { 
+            background: url('bg.png') no-repeat center center fixed; 
+            background-size: cover; 
+            color: white; 
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 1.2rem 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .logo { font-weight: 900; font-size: 1.4rem; letter-spacing: 3px; color: var(--mist-cyan); text-transform: uppercase; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 1.5rem; font-size: 0.85rem; font-weight: 600; opacity: 0.6; transition: 0.3s; text-transform: uppercase; }
+        .nav-links a:hover { opacity: 1; color: var(--mist-cyan); text-shadow: 0 0 10px var(--mist-glow); }
+
+        /* Sections */
+        section { min-height: 100vh; padding: 120px 10% 80px; display: flex; flex-direction: column; justify-content: center; }
+        h2 { font-size: 3rem; font-weight: 900; margin-bottom: 2.5rem; text-transform: uppercase; letter-spacing: 2px; text-align: center; }
+
+        /* Hero */
+        #home { text-align: center; }
+        .hero-title { font-size: 8rem; font-weight: 900; letter-spacing: -5px; margin-bottom: 10px; filter: drop-shadow(0 0 30px var(--mist-glow)); }
+        .hero-tag { font-size: 1.4rem; opacity: 0.7; letter-spacing: 8px; margin-bottom: 3.5rem; }
+
+        /* Buttons */
+        .btn-group { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1rem;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-transform: uppercase;
+        }
+        .btn-primary { background: var(--mist-cyan); color: #000; box-shadow: 0 0 30px var(--mist-glow); }
+        .btn-secondary { background: transparent; border: 2px solid white; color: white; }
+        .btn:hover { transform: scale(1.08) translateY(-3px); }
+        .btn-primary:hover { box-shadow: 0 0 50px var(--mist-cyan); }
+        .btn-secondary:hover { background: white; color: black; }
+
+        /* Features/Explore */
+        #explore { background: rgba(0,0,0,0.3); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: 0.4s;
+        }
+        .glass-card:hover { border-color: var(--mist-cyan); background: rgba(255,255,255,0.12); }
+        .feature-icon { font-size: 2rem; color: var(--mist-cyan); margin-bottom: 1rem; }
+
+        /* Download Section */
+        .download-box { max-width: 850px; margin: 0 auto; text-align: center; }
+        .checksum-container {
+            background: rgba(0,0,0,0.6);
+            padding: 1.2rem;
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 2rem 0;
+            border: 1px dashed var(--mist-cyan);
+            color: #ddd;
+            word-break: break-all;
+        }
+
+        footer { padding: 4rem; text-align: center; opacity: 0.4; font-size: 0.8rem; border-top: 1px solid var(--glass-border); }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 4rem; }
+            .hero-tag { font-size: 1rem; letter-spacing: 4px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Mist OS</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#explore">Explore</a>
+            <a href="#specs">Specs</a>
+            <a href="#download">Download</a>
+        </div>
+    </nav>
+
+    <section id="home">
+        <h1 class="hero-title">MIST OS</h1>
+        <p class="hero-tag">ALPHA 26.04.05</p>
+        <div class="btn-group">
+            <a href="#explore" class="btn btn-secondary">Explore Build</a>
+            <a href="#download" class="btn btn-primary">Get ISO</a>
+        </div>
+    </section>
+
+    <section id="explore">
+        <h2>What's inside?</h2>
+        <div class="grid">
+            <div class="glass-card">
+                <div class="feature-icon">✦</div>
+                <h3>Ethereal Desktop</h3>
+                <p style="opacity:0.7; font-size: 0.95rem; margin-top:10px;">A custom Deepin/GNOME hybrid designed for focus. Translucent docks, glass menus, and ultra-smooth animations.</p>
+            </div>
+            <div class="glass-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Mist-Kernel</h3>
+                <p style="opacity:0.7; font-size: 0.95rem; margin-top:10px;">Based on Zen-Linux. Tuned for low-latency gaming and 4K content creation without the stutter.</p>
+            </div>
+            <div class="glass-card">
+                <div class="feature-icon">🛠️</div>
+                <h3>Creator Suite</h3>
+                <p style="opacity:0.7; font-size: 0.95rem; margin-top:10px;">Pre-installed with Python, Rust, and Nativefier tools so you can start building apps on day one.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="specs">
+        <h2>Architecture</h2>
+        <div class="grid">
+            <div class="glass-card">
+                <h4 style="color:var(--mist-cyan)">ArchDDE Base</h4>
+                <p style="opacity:0.7; font-size: 0.9rem; margin-top:10px;">The bleeding edge of Linux with a stable, beautiful skin.</p>
+            </div>
+            <div class="glass-card">
+                <h4 style="color:var(--mist-cyan)">Filesystem</h4>
+                <p style="opacity:0.7; font-size: 0.9rem; margin-top:10px;">Optimized EXT4/BTRFS support for lightning-fast file transfers.</p>
+            </div>
+            <div class="glass-card">
+                <h4 style="color:var(--mist-cyan)">Hardware</h4>
+                <p style="opacity:0.7; font-size: 0.9rem; margin-top:10px;">Compatible with modern X86_64 CPUs and legacy NVIDIA/AMD GPUs.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="download">
+        <div class="download-box glass-card">
+            <h2>Download Alpha</h2>
+            <p style="opacity:0.8;">Secure the 7.06 GB ISO from Baconyy Labs.</p>
+            
+            <div class="checksum-container">
+                <span style="color:var(--mist-cyan)">SHA-256:</span><br>
+                35e1538468327c2d7eebffaa2146df6a
+            </div>
+
+            <a href="https://drive.google.com/file/d/1p0YVIureMBWWFAIRQm9Gp8MigwK0tEbl/view?usp=drive_link" target="_blank" class="btn btn-primary">DOWNLOAD FROM DRIVE</a>
+            
+            <p style="margin-top: 2rem; font-size: 0.75rem; opacity: 0.5;">
+                Version: 26.04.05 | Status: Experimental
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 Baconyy Labs | Part of the Baconyy Content Network. <br>
+        Built for the next generation of computer experts.
+    </footer>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mist OS | Alpha 26.04.05</title>
     <style>
         :root {
             --mist-cyan: #00fff2;

@@ -16,6 +16,11 @@
             --acrylic-highlight: rgba(255, 255, 255, 0.05);
         }
 
+        /* Forces the native smooth scroll on the whole page */
+        html {
+            scroll-behavior: smooth;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         
         body { 
@@ -23,10 +28,9 @@
             background-size: cover; 
             color: white; 
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
-        /* The Dimmer - Now a deep radial gradient for a cooler, cinematic vibe */
+        /* The Dimmer */
         body::before {
             content: "";
             position: fixed;
@@ -51,7 +55,7 @@
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
         }
         .logo { font-weight: 900; font-size: 1.5rem; letter-spacing: 3px; color: var(--mist-cyan); text-transform: uppercase; text-shadow: 0 0 15px var(--mist-cyan-dim); }
-        .nav-links a { color: white; text-decoration: none; margin-left: 2rem; font-size: 0.85rem; font-weight: 600; opacity: 0.7; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 2rem; font-size: 0.85rem; font-weight: 600; opacity: 0.7; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; }
         .nav-links a:hover { opacity: 1; color: var(--mist-cyan); text-shadow: 0 0 10px var(--mist-cyan-dim); }
 
         section { min-height: 100vh; padding: 140px 10% 80px; display: flex; flex-direction: column; justify-content: center; }
@@ -67,13 +71,14 @@
         .btn {
             display: inline-block;
             padding: 1.2rem 3.5rem;
-            border-radius: 12px; /* Sharper corners for a modern tech feel */
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 800;
             font-size: 1rem;
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             text-transform: uppercase;
             letter-spacing: 1px;
+            cursor: pointer;
         }
         .btn-primary { 
             background: var(--mist-cyan); 
@@ -97,7 +102,7 @@
             backdrop-filter: blur(40px) saturate(200%);
             -webkit-backdrop-filter: blur(40px) saturate(200%);
             border: 1px solid var(--acrylic-border);
-            border-top: 1px solid rgba(255,255,255,0.2); /* Highlight edge */
+            border-top: 1px solid rgba(255,255,255,0.2);
             border-radius: 20px;
             padding: 2.5rem;
             transition: 0.4s;
@@ -105,7 +110,6 @@
             position: relative;
             overflow: hidden;
         }
-        /* Inner subtle glow for cards */
         .glass-card::before {
             content: ''; position: absolute; top: 0; left: 0; right: 0; height: 100%;
             background: linear-gradient(180deg, var(--acrylic-highlight) 0%, transparent 100%);
@@ -227,5 +231,21 @@
         &copy; 2026 Mist OS Project. Distributed for computer experts and creators.
     </footer>
 
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>

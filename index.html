@@ -3,151 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mist OS | Alpha 26.04.05</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <title>Mist OS | The Next Generation Desktop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --mist-cyan: #00fff2;
-            --mist-cyan-dim: rgba(0, 255, 242, 0.2);
-            --mist-glow: rgba(0, 255, 242, 0.5);
-            /* ACRYLIC VARIABLES */
-            --acrylic-bg: rgba(20, 20, 25, 0.45);
-            --acrylic-border: rgba(255, 255, 255, 0.12);
-            --acrylic-highlight: rgba(255, 255, 255, 0.05);
+            --mist-accent: #0088ff;
+            --surface: rgba(15, 17, 23, 0.8);
+            --border: rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-muted: #a0aec0;
         }
 
-        /* Forces the native smooth scroll on the whole page */
-        html {
-            scroll-behavior: smooth;
-        }
-
+        html { scroll-behavior: smooth; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         
         body { 
             background: url('bg.png') no-repeat center center fixed; 
             background-size: cover; 
-            color: white; 
+            color: var(--text-main); 
             overflow-x: hidden;
         }
 
-        /* The Dimmer */
+        /* The Dimmer - Deep and clean */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, rgba(10,10,15,0.5) 0%, rgba(5,5,10,0.85) 100%);
+            background: linear-gradient(180deg, rgba(10, 11, 15, 0.7) 0%, rgba(5, 6, 8, 0.95) 100%);
+            backdrop-filter: blur(12px);
             z-index: -1;
         }
 
-        /* Acrylic Navigation */
         nav {
             position: fixed;
             top: 0; width: 100%;
-            padding: 1.2rem 8%;
+            padding: 1.5rem 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(10, 10, 15, 0.3);
-            backdrop-filter: blur(40px) saturate(180%);
-            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            background: rgba(10, 11, 15, 0.5);
+            backdrop-filter: blur(20px);
             z-index: 1000;
-            border-bottom: 1px solid var(--acrylic-border);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid var(--border);
         }
-        .logo { font-weight: 900; font-size: 1.5rem; letter-spacing: 3px; color: var(--mist-cyan); text-transform: uppercase; text-shadow: 0 0 15px var(--mist-cyan-dim); }
-        .nav-links a { color: white; text-decoration: none; margin-left: 2rem; font-size: 0.85rem; font-weight: 600; opacity: 0.7; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; }
-        .nav-links a:hover { opacity: 1; color: var(--mist-cyan); text-shadow: 0 0 10px var(--mist-cyan-dim); }
+        .logo { font-weight: 900; font-size: 1.5rem; letter-spacing: 2px; color: var(--mist-cyan); text-transform: uppercase; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; margin-left: 2rem; font-size: 0.85rem; font-weight: 700; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-links a:hover { color: var(--mist-cyan); }
 
         section { min-height: 100vh; padding: 140px 10% 80px; display: flex; flex-direction: column; justify-content: center; }
-        h2 { font-size: 3rem; font-weight: 900; margin-bottom: 2.5rem; text-align: center; letter-spacing: 2px; }
+        h2 { font-size: 3rem; font-weight: 900; margin-bottom: 3rem; text-align: center; letter-spacing: -1px; }
 
-        /* Hero */
-        #home { text-align: center; }
-        .hero-title { font-size: 8rem; font-weight: 900; letter-spacing: -4px; filter: drop-shadow(0 0 30px var(--mist-glow)); margin-bottom: 10px; }
-        .hero-tag { font-size: 1.2rem; opacity: 0.6; letter-spacing: 8px; margin-bottom: 3.5rem; font-weight: 600; }
+        #home { text-align: center; max-width: 1000px; margin: 0 auto; }
+        .hero-title { font-size: 6rem; font-weight: 900; letter-spacing: -4px; margin-bottom: 1rem; line-height: 0.9; }
+        .hero-tag { font-size: 1.4rem; color: var(--text-muted); margin-bottom: 3.5rem; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.4; }
 
-        /* Buttons */
         .btn-group { display: flex; gap: 20px; justify-content: center; }
         .btn {
-            display: inline-block;
-            padding: 1.2rem 3.5rem;
-            border-radius: 12px;
+            display: inline-flex;
+            padding: 1rem 3rem;
+            border-radius: 6px;
             text-decoration: none;
             font-weight: 800;
-            font-size: 1rem;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
-            cursor: pointer;
         }
-        .btn-primary { 
-            background: var(--mist-cyan); 
-            color: #000; 
-            box-shadow: 0 0 20px var(--mist-cyan-dim), inset 0 0 10px rgba(255,255,255,0.5); 
-        }
-        .btn-secondary { 
-            background: var(--acrylic-bg); 
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--mist-cyan); 
-            color: var(--mist-cyan); 
-        }
-        .btn:hover { transform: translateY(-4px); }
-        .btn-primary:hover { box-shadow: 0 0 40px var(--mist-glow), inset 0 0 15px rgba(255,255,255,0.8); }
-        .btn-secondary:hover { background: var(--mist-cyan-dim); color: white; border-color: white; }
+        .btn-primary { background: var(--mist-cyan); color: #000; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 255, 242, 0.3); }
+        .btn-secondary { border: 1px solid var(--border); color: white; }
+        .btn-secondary:hover { background: rgba(255,255,255,0.05); border-color: white; }
 
-        /* Acrylic Cards */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .glass-card {
-            background: var(--acrylic-bg);
-            backdrop-filter: blur(40px) saturate(200%);
-            -webkit-backdrop-filter: blur(40px) saturate(200%);
-            border: 1px solid var(--acrylic-border);
-            border-top: 1px solid rgba(255,255,255,0.2);
-            border-radius: 20px;
-            padding: 2.5rem;
-            transition: 0.4s;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            position: relative;
-            overflow: hidden;
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 3rem;
+            transition: 0.3s ease;
         }
-        .glass-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 100%;
-            background: linear-gradient(180deg, var(--acrylic-highlight) 0%, transparent 100%);
-            pointer-events: none;
-        }
-        .glass-card:hover { border-color: var(--mist-cyan); transform: translateY(-8px); box-shadow: 0 30px 60px rgba(0,255,242,0.1); }
+        .card:hover { border-color: var(--mist-cyan); background: rgba(15, 17, 23, 1); }
+        .card h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--mist-cyan); }
+        .card p { color: var(--text-muted); font-size: 1rem; line-height: 1.7; }
 
-        /* Download Section */
-        .download-box {
+        .download-card {
             max-width: 900px;
             margin: 0 auto;
-            background: var(--acrylic-bg);
-            backdrop-filter: blur(50px) saturate(200%);
-            -webkit-backdrop-filter: blur(50px) saturate(200%);
-            border-radius: 24px;
-            padding: 60px 40px;
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 4rem;
+            border: 1px solid var(--border);
             text-align: center;
-            border: 1px solid var(--acrylic-border);
-            border-top: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
         }
-        
-        .sha-box {
+
+        .checksum-bar {
             background: rgba(0, 0, 0, 0.4);
-            border: 1px solid var(--acrylic-border);
             border-left: 4px solid var(--mist-cyan);
-            border-radius: 8px;
-            padding: 20px;
-            margin: 35px 0;
-            text-align: center;
-            box-shadow: inset 0 4px 15px rgba(0,0,0,0.5);
+            padding: 1.5rem;
+            margin: 2.5rem 0;
+            text-align: left;
+            border-radius: 4px;
         }
-        .sha-label { color: var(--mist-cyan); font-size: 0.8rem; font-weight: 800; display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
-        .sha-value { font-family: 'Courier New', monospace; font-size: 0.95rem; color: #ddd; word-break: break-all; }
+        .checksum-label { font-size: 0.75rem; font-weight: 900; color: var(--mist-cyan); margin-bottom: 8px; display: block; }
+        .checksum-value { font-family: 'Courier New', monospace; font-size: 1rem; color: #fff; word-break: break-all; opacity: 0.9; }
 
-        footer { padding: 3rem; text-align: center; opacity: 0.4; font-size: 0.8rem; border-top: 1px solid var(--acrylic-border); margin-top: 50px; }
+        .specs-footer { display: flex; justify-content: center; gap: 4rem; margin-top: 3rem; border-top: 1px solid var(--border); padding-top: 2rem; }
+        .spec-item span { display: block; font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; font-weight: 800; margin-bottom: 5px; letter-spacing: 1px; }
+        .spec-item strong { font-size: 1rem; color: #fff; }
 
-        @media (max-width: 768px) { .hero-title { font-size: 4rem; } .btn-group { flex-direction: column; } nav { padding: 1rem 5%; } .nav-links { display: none; } }
+        footer { padding: 4rem; text-align: center; color: var(--text-muted); font-size: 0.8rem; letter-spacing: 1px; }
+
+        @media (max-width: 768px) { .hero-title { font-size: 3.5rem; } .specs-footer { flex-direction: column; gap: 1.5rem; } .nav-links { display: none; } }
     </style>
 </head>
 <body>
@@ -156,94 +123,102 @@
         <div class="logo">Mist OS</div>
         <div class="nav-links">
             <a href="#home">Home</a>
-            <a href="#explore">Explore</a>
-            <a href="#specs">Specs</a>
-            <a href="#download">Download</a>
+            <a href="#features">Features</a>
+            <a href="#architecture">Specs</a>
+            <a href="#download">Get ISO</a>
         </div>
     </nav>
 
     <section id="home">
         <h1 class="hero-title">MIST OS</h1>
-        <p class="hero-tag">ALPHA 26.04.05</p>
+        <p class="hero-tag">A high-performance, aesthetically refined operating system. Built for those who demand a seamless desktop experience without compromise.</p>
         <div class="btn-group">
-            <a href="#explore" class="btn btn-secondary">Explore Build</a>
-            <a href="#download" class="btn btn-primary">Get ISO</a>
+            <a href="#download" class="btn btn-primary">Download Build</a>
+            <a href="#features" class="btn btn-secondary">Learn More</a>
         </div>
     </section>
 
-    <section id="explore">
-        <h2>THE EXPERIENCE</h2>
+    <section id="features">
+        <h2>Engineered Excellence</h2>
         <div class="grid">
-            <div class="glass-card">
-                <h3 style="color:var(--mist-cyan); font-size: 1.4rem; margin-bottom: 10px;">Ethereal UI</h3>
-                <p style="opacity:0.7; font-size: 0.95rem;">Deeply customized desktop environment focused on acrylic glassmorphism and fluid motion.</p>
+            <div class="card">
+                <h3>Fluid Interface</h3>
+                <p>Experience a desktop environment designed for modern workflows. Clean lines, intuitive navigation, and unmatched visual clarity.</p>
             </div>
-            <div class="glass-card">
-                <h3 style="color:var(--mist-cyan); font-size: 1.4rem; margin-bottom: 10px;">Optimized Kernel</h3>
-                <p style="opacity:0.7; font-size: 0.95rem;">Custom-tuned for low-latency performance and high-end workstation tasks.</p>
+            <div class="card">
+                <h3>Native Speed</h3>
+                <p>Mist OS is tuned at the core level to ensure your hardware performs at its peak, whether you're compiling, gaming, or creating.</p>
             </div>
-            <div class="glass-card">
-                <h3 style="color:var(--mist-cyan); font-size: 1.4rem; margin-bottom: 10px;">No Bloat</h3>
-                <p style="opacity:0.7; font-size: 0.95rem;">Zero telemetry. Zero tracking. Just pure performance and elite privacy.</p>
+            <div class="card">
+                <h3>Secure by Default</h3>
+                <p>Built on a foundation of privacy and security. No telemetry, no hidden processes—just your data, exactly where it belongs.</p>
             </div>
         </div>
     </section>
 
-    <section id="specs">
-        <h2>SYSTEM ARCHITECTURE</h2>
+    <section id="architecture">
+        <h2>System Specs</h2>
         <div class="grid">
-            <div class="glass-card">
-                <h4 style="font-size: 1.1rem; margin-bottom: 8px;">BASE ENGINE</h4>
-                <p style="opacity:0.6; font-size: 0.9rem; color: var(--mist-cyan);">Mist OS Native Core</p>
+            <div class="card">
+                <h4>Base Engine</h4>
+                <p style="color: var(--mist-cyan);">Mist OS Core v1.0</p>
+                <p style="font-size: 0.85rem; margin-top: 5px;">Ubuntu System Foundation</p>
             </div>
-            <div class="glass-card">
-                <h4 style="font-size: 1.1rem; margin-bottom: 8px;">FILE SYSTEM</h4>
-                <p style="opacity:0.6; font-size: 0.9rem; color: var(--mist-cyan);">BTRFS / EXT4 Optimized</p>
+            <div class="card">
+                <h4>Desktop</h4>
+                <p style="color: var(--mist-cyan);">Ethereal Desktop Environment</p>
+                <p style="font-size: 0.85rem; margin-top: 5px;">DDE-Based Architecture</p>
             </div>
-            <div class="glass-card">
-                <h4 style="font-size: 1.1rem; margin-bottom: 8px;">COMPATIBILITY</h4>
-                <p style="opacity:0.6; font-size: 0.9rem; color: var(--mist-cyan);">X86_64 / UEFI Support</p>
+            <div class="card">
+                <h4>Compatibility</h4>
+                <p style="color: var(--mist-cyan);">Universal X86_64</p>
+                <p style="font-size: 0.85rem; margin-top: 5px;">UEFI & SecureBoot Support</p>
             </div>
         </div>
     </section>
 
     <section id="download">
-        <div class="download-box">
-            <h2 style="font-size: 3rem; margin-bottom: 15px;">READY TO INSTALL?</h2>
-            <p style="opacity:0.8; font-size: 1.1rem;">Download the latest Alpha build below. This is an experimental release.</p>
+        <div class="download-card">
+            <h2 style="margin-bottom: 10px;">Ready to deploy?</h2>
+            <p style="color: var(--text-muted);">Current Stable Release: Alpha 26.04.05</p>
             
-            <div class="sha-box">
-                <span class="sha-label">SHA-256 Checksum:</span>
-                <span class="sha-value">35e1538468327c2d7eebffaa2146df6a</span>
+            <div class="checksum-bar">
+                <span class="checksum-label">SHA-256 CHECK-SUM</span>
+                <span class="checksum-value">35e1538468327c2d7eebffaa2146df6a</span>
             </div>
 
-            <a href="https://drive.google.com/file/d/1p0YVIureMBWWFAIRQm9Gp8MigwK0tEbl/view?usp=drive_link" target="_blank" class="btn btn-primary">
-                DOWNLOAD FROM GOOGLE DRIVE
+            <a href="https://drive.google.com/file/d/1p0YVIureMBWWFAIRQm9Gp8MigwK0tEbl/view?usp=drive_link" target="_blank" class="btn btn-primary" style="padding: 1.2rem 4rem;">
+                Download ISO Image
             </a>
             
-            <div style="margin-top:35px; font-size:0.85rem; opacity:0.5; font-weight: 600; letter-spacing: 1px;">
-                FILE SIZE: 7.06 GB <span style="color:var(--mist-cyan); margin: 0 10px;">|</span> BUILD: 26.04.05 <span style="color:var(--mist-cyan); margin: 0 10px;">|</span> FORMAT: .ISO
+            <div class="specs-footer">
+                <div class="spec-item">
+                    <span>File Size</span>
+                    <strong>7.06 GB</strong>
+                </div>
+                <div class="spec-item">
+                    <span>Release</span>
+                    <strong>26.04.05</strong>
+                </div>
+                <div class="spec-item">
+                    <span>Format</span>
+                    <strong>Bootable ISO</strong>
+                </div>
             </div>
         </div>
     </section>
 
     <footer>
-        &copy; 2026 Mist OS Project. Distributed for computer experts and creators.
+        &copy; 2026 Mist OS Project. Distributed for power users and creators.
     </footer>
 
     <script>
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         });
     </script>
